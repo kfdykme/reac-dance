@@ -1,20 +1,19 @@
-import React, { Component, Fragment,lazy } from 'react';
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, {Component, Suspense, lazy } from 'react';
+
 import Navbar from './component/Navbar'
-const Forum=lazy(()=>import("./component/Forum"));
+import Forum from './component/Forum'
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <Fragment>
+      <Suspense fallback={<div>Loading...</div>}>
           <Navbar/>
-          <Route path="/socre" Component={Forum}/>
-        </Fragment>
-      </Router>
+
+          <Route path="/score" component={Forum}/>
+         </Suspense>
+    </Router>
     );
   }
 }
